@@ -1,0 +1,26 @@
+import type { ILogin } from "~/types/ILogin";
+import { apiClient } from "./apiClient";
+import type { IRegister } from "~/types/IRegister";
+
+class UserService {
+  async Register(userData: IRegister): Promise<any> {
+    // Proper method syntax inside a class
+   return await apiClient('/Api/Account/Register', {
+      method: 'POST',
+      data: userData, // The payload for the request
+    });
+    // If you want to log the response or do something with it, you can uncomment the console.log
+    // console.log(newUser);
+  }
+  async Login(userData: ILogin): Promise<any> {
+    // Proper method syntax inside a class
+   return await apiClient('/Api/Account/Login', {
+      method: 'POST',
+      data: userData, // The payload for the request
+    });
+    // If you want to log the response or do something with it, you can uncomment the console.log
+    // console.log(newUser);
+  }
+}
+
+export const userService = new UserService();
