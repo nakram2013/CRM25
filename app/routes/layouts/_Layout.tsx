@@ -4,6 +4,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 import { Separator } from "~/components/ui/separator";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar";
 import  Cookies from "js-cookie";
+import { Toaster } from "sonner";
 
 
 export default function _Layout() {
@@ -45,6 +46,7 @@ export default function _Layout() {
                     <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
                 </div>
             </SidebarInset>
+            <Toaster />
         </SidebarProvider>
     )
 }

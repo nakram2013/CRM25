@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router";
 
+
 const layout: React.FC = () => {
     return (
         <div className="container-wrapper">
@@ -33,6 +34,7 @@ const layout: React.FC = () => {
                 </section>
             </div>
         </div>
+        
     );
 };
 

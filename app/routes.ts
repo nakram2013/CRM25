@@ -12,7 +12,9 @@ export default [
     //   route("register", "./auth/register.tsx"),
     ]),
     layout("./routes/layouts/_Layout.tsx", [
-      route("Leads", "./leads/grid.tsx"),
+      route("Leads/:id?", "./leads/leads.tsx"),
+      route("Lead/:id", "./leads/lead-preview.tsx"),
+      route("Users/:id?", "./Users/Users.tsx"),
     //   route("register", "./auth/register.tsx"),
     ]),
   

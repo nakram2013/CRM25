@@ -1,16 +1,14 @@
 "use client"
 import { MoreHorizontal } from "lucide-react"
-
-import { labels } from "../data/data"
 import type { Row } from "@tanstack/react-table"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "~/components/ui/dropdown-menu"
 import { Button } from "~/components/ui/button"
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "~/components/ui/dialog"
-import LeadForm from "./lead-form"
-import { leadSchema } from "../data/schema"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "~/components/ui/dialog"
 import { useState } from "react"
 import { ScrollArea } from "~/components/ui/scroll-area"
+import UserForm from "./user-form"
 import type { z } from "zod"
+import { userSchema } from "../data/user-schema"
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -19,7 +17,7 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const task = leadSchema.parse(row.original)
+
   const [open, setOpen] = useState(false);
   return (
     <DropdownMenu>
@@ -38,16 +36,16 @@ export function DataTableRowActions<TData>({
             <DialogTrigger className="w-full text-left px-2 py-1.5 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-accent focus:text-accent-foreground">
               Edit
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1000px] 2xl:max-w-[1200px]">
+            <DialogContent className="sm:max-w-[425px] md:max-w-[600px] lg:max-w-[600px] xl:max-w-[600px] 2xl:max-w-[600px]">
               <DialogHeader>
-                <DialogTitle>Edit lead</DialogTitle>
+                <DialogTitle>Edit Profile</DialogTitle>
 
                 <DialogDescription>
-                  Make changes to your lead here. Click save when you're done.
+                  Make changes to your profile here. Click save when you're done.
                 </DialogDescription>
               </DialogHeader>
               <ScrollArea className="max-h-[70vh] rounded-md">
-                <LeadForm lead={leadSchema.parse(row.original) as z.infer<typeof leadSchema>} onClose={() => setOpen(false)} />
+                <UserForm data={userSchema.parse(row.original) as z.infer<typeof userSchema>} onClose={() => setOpen(false)} />
               </ScrollArea>
             </DialogContent>
 
@@ -59,13 +57,13 @@ export function DataTableRowActions<TData>({
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>Labels</DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
-            <DropdownMenuRadioGroup value={task.firstName}>
+            {/* <DropdownMenuRadioGroup value={task.firstName}>
               {labels.map((label) => (
                 <DropdownMenuRadioItem key={label.value} value={label.value}>
                   {label.label}
                 </DropdownMenuRadioItem>
               ))}
-            </DropdownMenuRadioGroup>
+            </DropdownMenuRadioGroup> */}
           </DropdownMenuSubContent>
         </DropdownMenuSub>
         <DropdownMenuSeparator />

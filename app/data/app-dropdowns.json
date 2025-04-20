@@ -1,0 +1,15 @@
+{
+    "userRoles" :[{
+        "text": "None",
+        "value": "0"
+    },{
+        "text": "Admin",
+        "value": "1"
+    },{
+        "text": "Agent",
+        "value": "2"
+    },{
+        "text": "Leader",
+        "value": "3"
+    }]
+}
