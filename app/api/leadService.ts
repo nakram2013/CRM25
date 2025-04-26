@@ -64,6 +64,16 @@ class LeadService {
             data: userData,
         });
     }
+    async followup(leadID: number): Promise<any> {
+        // Proper method syntax inside a class
+        return await apiClient('/Api/LeadFollowUp/GetList/' + leadID, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.auth}`,
+            }
+        });
+    }
 }
 
 export const leadService = new LeadService();

@@ -13,10 +13,12 @@ import { userSchema } from "../data/user-schema";
 import { RadioGroup, RadioGroupItem } from "~/components/ui/radio-group";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "~/components/ui/select";
 import { profileService } from "~/api/profileService";
+import dropdowns from "~/data/app-dropdowns.json";
 
 const UserForm = ({ data, onClose }: { data: z.infer<typeof userSchema>; onClose: () => void; }) => {
 
-    const [isLoading, setIsLoading] = React.useState<boolean>(false)
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+    
     // const {
     //     register,
     //     handleSubmit,
@@ -26,9 +28,13 @@ const UserForm = ({ data, onClose }: { data: z.infer<typeof userSchema>; onClose
     // });
     const form = useForm<z.infer<typeof userSchema>>({
         resolver: zodResolver(userSchema),
-        defaultValues: {...data,gender: Number(data.gender), role: Number(data.role)},
+        defaultValues: {...data,
+            gender: Number(data.gender), 
+            role: Number(data.role),
+            status: Number(data.status)},
         mode: "onBlur",
     })
+    
     const queryClient = useQueryClient();
     async function onSubmit(values: z.infer<typeof userSchema>) {
         setIsLoading(true);
@@ -41,24 +47,24 @@ const UserForm = ({ data, onClose }: { data: z.infer<typeof userSchema>; onClose
             queryClient.invalidateQueries({ queryKey: ["Users"] });
         }
         setIsLoading(false);
-        console.log(values);
     }
-    return (<React.Fragment>
+    return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="p-1">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="p-1" key={data.userID}>
                 <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4">
                     <FormField
                         control={form.control}
                         name="firstName"
-                        render={({ field }) => (
+                        render={({ field }) => {
+                            return (
                             <FormItem>
                                 <FormLabel>First Name</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="First Name" {...field} />
+                                    <Input placeholder="First Name" {...field}  />
                                 </FormControl>
                                 <FormMessage />
-                            </FormItem>
-                        )}
+                            </FormItem>)
+                        }}
                     />
                     <FormField
                         control={form.control}
@@ -140,7 +146,7 @@ const UserForm = ({ data, onClose }: { data: z.infer<typeof userSchema>; onClose
                         name="role"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Project / Product</FormLabel>
+                                <FormLabel>Role / Position</FormLabel>
                                 <FormControl>
                                     <Select
                                         onValueChange={(val: string) => field.onChange(val)}
@@ -152,10 +158,43 @@ const UserForm = ({ data, onClose }: { data: z.infer<typeof userSchema>; onClose
                                         <SelectContent>
                                             <SelectGroup>
                                                 <SelectLabel>Role / Position</SelectLabel>
-                                                <SelectItem value="0">None</SelectItem>
-                                                <SelectItem value="1">Admin</SelectItem>
-                                                <SelectItem value="2">Agent</SelectItem>
-                                                <SelectItem value="3">Leader</SelectItem>
+                                                {dropdowns.userRoles.map((item, index) => (
+
+                                                    <SelectItem key={index} value={item.value}>
+                                                        {item.text}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectGroup>
+                                        </SelectContent>
+                                    </Select>
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                     <FormField
+                        control={form.control}
+                        name="status"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Status</FormLabel>
+                                <FormControl>
+                                    <Select
+                                        onValueChange={(val: string) => field.onChange(val)}
+                                        value={field.value?.toString() ?? ''}
+                                    >
+                                        <SelectTrigger className="w-full">
+                                            <SelectValue placeholder="Select a Status" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectGroup>
+                                                <SelectLabel>Status</SelectLabel>
+                                                {dropdowns.userStatus.map((item, index) => (
+
+                                                    <SelectItem key={index} value={item.value}>
+                                                        {item.text}
+                                                    </SelectItem>
+                                                ))}
                                             </SelectGroup>
                                         </SelectContent>
                                     </Select>
@@ -177,8 +216,7 @@ const UserForm = ({ data, onClose }: { data: z.infer<typeof userSchema>; onClose
                         ) : ""}{" "} Save changes</Button>
                 </DialogFooter>
             </form>
-        </Form>
-    </React.Fragment >);
+        </Form>);
 };
 
 export default UserForm;

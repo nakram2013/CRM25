@@ -12,13 +12,15 @@ export const userSchema = z.object({
       return isNaN(num) ? undefined : num;
     }, z.number().default(1)),
     password: z.string().default(""),
-    status: z.string().default(""),
+    status: z.preprocess((val) => {
+      const num = Number(val);
+      return isNaN(num) ? undefined : num;
+    }, z.number().default(0)),
     role: z.preprocess((val) => {
       const num = Number(val);
       return isNaN(num) ? undefined : num;
     }, z.number().default(0)),
     addedBy: z.number().nullable().default(0),
-    //addedDate: z.preprocess((val) => new Date((val as string) + "Z"),z.date())
     addedDate: z.preprocess((val) => {
       if (typeof val === "string") {
         return new Date(val.endsWith("Z") ? val : val + "Z");

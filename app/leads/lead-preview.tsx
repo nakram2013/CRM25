@@ -7,6 +7,7 @@ import type { z } from "zod";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
+import LeadFollowup from "./components/lead-followup";
 
 const LeadPreview: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -52,10 +53,7 @@ const LeadPreview: React.FC = () => {
                         </CardHeader>
                         <CardContent className="space-y-2">
                             <div className="space-y-1">
-
-                            </div>
-                            <div className="space-y-1">
-
+                            <LeadFollowup id={parseInt(id ? id : "0")} />
                             </div>
                         </CardContent>
                         <CardFooter>
@@ -72,9 +70,7 @@ const LeadPreview: React.FC = () => {
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-2">
-                            <div className="space-y-1">
-
-                            </div>
+                           <LeadFollowup id={parseInt(id ? id : "0")} />
                         </CardContent>
                         <CardFooter>
                             <Button>Save password</Button>

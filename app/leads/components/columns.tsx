@@ -6,6 +6,7 @@ import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
 import { Checkbox } from "~/components/ui/checkbox"
 import { Badge } from "~/components/ui/badge"
+import { Link } from "react-router"
 
 export const columns: ColumnDef<Task>[] = [
     {
@@ -37,7 +38,7 @@ export const columns: ColumnDef<Task>[] = [
         header: ({ column }) => (
             <DataTableColumnHeader column={column} title="Name" />
         ),
-        cell: ({ row }) => <div className="w-[80px]">{row.original.firstName + " " + row.original.lastName}</div>,
+        cell: ({ row }) => <div className="w-[80px]"><Link className="text-blue-500" to={"/Lead/" + row.original.leadId}> {row.original.firstName + " " + row.original.lastName}</Link></div>,
         enableSorting: false,
         enableHiding: false,
     },

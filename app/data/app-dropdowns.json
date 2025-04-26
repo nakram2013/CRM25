@@ -1,15 +1,38 @@
 {
-    "userRoles" :[{
-        "text": "None",
-        "value": "0"
-    },{
-        "text": "Admin",
-        "value": "1"
-    },{
-        "text": "Agent",
-        "value": "2"
-    },{
-        "text": "Leader",
-        "value": "3"
-    }]
+    "userRoles": [
+        {
+            "text": "None",
+            "value": "0"
+        },
+        {
+            "text": "Admin",
+            "value": "1"
+        },
+        {
+            "text": "Agent",
+            "value": "2"
+        },
+        {
+            "text": "Leader",
+            "value": "3"
+        }
+    ],
+    "userStatus": [
+        {
+            "text": "None",
+            "value": "0"
+        },
+        {
+            "text": "Active",
+            "value": "1"
+        },
+        {
+            "text": "Blocked",
+            "value": "2"
+        },
+        {
+            "text": "Banned",
+            "value": "3"
+        }
+    ]
 }

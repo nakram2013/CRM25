@@ -9,7 +9,7 @@ export default [
   
     layout("./routes/auth/layout.tsx", [
       route("login", "./routes/auth/login.tsx"),
-    //   route("register", "./auth/register.tsx"),
+      route("register", "./routes/auth/register.tsx"),
     ]),
     layout("./routes/layouts/_Layout.tsx", [
       route("Leads/:id?", "./leads/leads.tsx"),

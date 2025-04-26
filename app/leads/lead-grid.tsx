@@ -1,20 +1,18 @@
 import { DataTable } from "~/components/DataTable";
 import { columns } from "./components/columns"
 import { useEffect, useState } from "react";
-import type { IDataTableRequest } from "~/types/IDataTableRequest";
 import { useParams } from "react-router";
 const LeadGrid: React.FC = () => {
     const { id } = useParams<{ id: string }>();
-       const [filters, setFilters] = useState<IDataTableRequest>({
+       const [filters, setFilters] = useState<any>({
         pagination: { pageIndex: 0, pageSize: 5 } ,
         sortBy: "",
         isDescending: false,
-        Type: "" // Add the missing Type property
     });
     
     useEffect(() => {
         if(id != undefined && id != ""){
-          setFilters((prevFilters) => ({
+          setFilters((prevFilters : any) => ({
             ...prevFilters,
             Type: id // Set the Type property based on the URL parameter
           }));

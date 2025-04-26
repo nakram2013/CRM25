@@ -17,7 +17,7 @@ import { Icons } from "~/components/icons";
 import { DateTimePicker } from "~/components/date-time-picker";
 import { toast } from "sonner";
 
-const LeadForm = <TData,>({ lead,onClose }: { lead: z.infer<typeof leadSchema> ; onClose: () => void; }) => {
+const LeadForm = ({ lead,onClose }: { lead: z.infer<typeof leadSchema> ; onClose: () => void; }) => {
     
     const [isLoading, setIsLoading] = React.useState<boolean>(false)
     // const {

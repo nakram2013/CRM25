@@ -1,9 +1,10 @@
 import type { ILogin } from "~/types/ILogin";
 import { apiClient } from "./apiClient";
-import type { IRegister } from "~/types/IRegister";
+import type { z } from "zod";
+import type { registerSchema } from "~/routes/auth/data/register-schema";
 
 class UserService {
-  async Register(userData: IRegister): Promise<any> {
+  async Register(userData: z.infer<typeof registerSchema>): Promise<any> {
     // Proper method syntax inside a class
    return await apiClient('/Api/Account/Register', {
       method: 'POST',

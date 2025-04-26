@@ -118,6 +118,8 @@ export const columns: ColumnDef<UserSchema>[] = [
     },
     {
         id: "actions",
-        cell: ({ row }) => <DataTableRowActions row={row} />,
+        cell: ({ row }) =>  <div key={row.id}>
+        <DataTableRowActions row={row} />
+      </div>,
     },
 ]

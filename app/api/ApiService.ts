@@ -32,6 +32,16 @@ class ApiService {
             }
         });
     }
+    async post(apiUrl : string,data : any): Promise<any> {
+        // Proper method syntax inside a class
+        return await apiClient(apiUrl, {
+            method: 'POST',
+            data: data,
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+    }
 }
 
 export const apiService = new ApiService();

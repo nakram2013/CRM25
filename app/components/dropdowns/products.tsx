@@ -9,6 +9,7 @@ const Products: React.FC<any> = ({ children, ...rest }) => {
         try {
             const response = await apiService.dropdownRequest('/api/Dropdowns/Project'); // Assuming this returns an array of options
             setOptions(response);
+            console.log(response);
         } catch (error) {
             console.error('Error fetching dropdown options:', error);
         }

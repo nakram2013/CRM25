@@ -9,7 +9,6 @@ import { Toaster } from "sonner";
 
 export default function _Layout() {
     const defaultOpen = Cookies.get("sidebar_state") === "true" ?? true;
-    console.log(defaultOpen)
     return (
         <SidebarProvider defaultOpen={true}>
             <AppSidebar />

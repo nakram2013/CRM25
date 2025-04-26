@@ -8,9 +8,10 @@ import type { ILogin } from "~/types/ILogin";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup"; // Ensure it's lowercase everywhere
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { userService } from "~/api/userService";
 import loginImage from '../../assets/images/login.jpg';
+import LoginWithGoogle from './components/login-with-google';
 
 const validationSchema = yup.object().shape({
     password: yup.string().required("Password is required"),
@@ -44,14 +45,25 @@ const Login: React.FC = () => {
     };
     return (
         <div className="grid min-h-svh lg:grid-cols-2">
+
+            <div className="bg-muted relative hidden lg:block">
+                <img
+                    src={loginImage}
+                    alt="Image"
+                    className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+                />
+            </div>
             <div className="flex flex-col gap-4 p-6 md:p-10">
-                <div className="flex justify-center gap-2 md:justify-start">
+                <div className="flex gap-2 justify-between">
                     <a href="#" className="flex items-center gap-2 font-medium">
                         <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
                             {/* <GalleryVerticalEnd className="size-4" /> */}
                         </div>
                         The SQ
                     </a>
+                    <Button asChild>
+                        <Link to="/Register">Create an account</Link>
+                    </Button>
                 </div>
                 <div className="flex flex-1 items-center justify-center">
                     <div className="w-full max-w-xs">
@@ -114,16 +126,12 @@ const Login: React.FC = () => {
                                 )}{" "}
                                 GitHub
                             </Button>
+                        
+
+                            <LoginWithGoogle />
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="bg-muted relative hidden lg:block">
-                <img
-                    src={loginImage}
-                    alt="Image"
-                    className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-                />
             </div>
         </div>
         // <div className={cn("grid gap-6", className)} {...props}>
