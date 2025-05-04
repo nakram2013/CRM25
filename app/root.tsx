@@ -4,13 +4,10 @@ import {
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration,
 } from "react-router";
 
 import type { Route } from "./+types/root";
 import "./app.css";
-import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
-import { AppSidebar } from "./components/app-sidebar";
 import { FrameworkProvider } from "./context/FrameworkContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 

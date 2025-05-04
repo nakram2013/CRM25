@@ -2,16 +2,15 @@
  
 import * as React from "react";
 import { format } from "date-fns";
-import { Popover, PopoverTrigger } from "@radix-ui/react-popover";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "./ui/button";
 import { cn } from "~/lib/utils";
 import { CalendarIcon } from "lucide-react";
-import { PopoverContent } from "./ui/popover";
 import { Calendar } from "./ui/calendar";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
  
-export function DateTimePicker({ oldDate }: { oldDate?: Date }) {
-  const [date, setDate] = React.useState(oldDate);
+ 
+export function DateTimePicker({date, setDate} : {date?: Date, setDate: (date: Date) => void}) {
   const [isOpen, setIsOpen] = React.useState(false);
  
   const hours = Array.from({ length: 12 }, (_, i) => i + 1);
@@ -61,7 +60,7 @@ export function DateTimePicker({ oldDate }: { oldDate?: Date }) {
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0">
+      <PopoverContent className="w-auto p-0 pointer-events-auto">
         <div className="sm:flex">
           <Calendar
             mode="single"

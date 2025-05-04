@@ -2,6 +2,7 @@ import { apiClient } from "./apiClient";
 import type { IReassignLead } from "~/types/IReassignLead";
 import type { leadSchema } from "~/leads/data/schema";
 import type { z } from "zod";
+import type { leadFollowUpFormSchema } from "~/leads/data/lead-followup-form-schema";
 
 class LeadService {
     private auth: string | null = null;
@@ -68,6 +69,17 @@ class LeadService {
         // Proper method syntax inside a class
         return await apiClient('/Api/LeadFollowUp/GetList/' + leadID, {
             method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.auth}`,
+            }
+        });
+    }
+    async createFollowup(data: z.infer<typeof leadFollowUpFormSchema>): Promise<any> {
+        // Proper method syntax inside a class
+        return await apiClient('/Api/LeadFollowUp', {
+            method: 'Post',
+            data: data,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${this.auth}`,

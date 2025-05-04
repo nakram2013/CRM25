@@ -1,7 +1,7 @@
 import type { Row } from "@tanstack/react-table";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "~/components/ui/button";
-import { DialogClose, DialogFooter } from "~/components/ui/dialog";
+import { DialogClose, DialogFooter, DialogHeader, DialogTitle } from "~/components/ui/dialog";
 import { Input } from "~/components/ui/input";
 import { leadSchema } from "../data/schema";
 import { useForm } from "react-hook-form";
@@ -16,10 +16,13 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Icons } from "~/components/icons";
 import { DateTimePicker } from "~/components/date-time-picker";
 import { toast } from "sonner";
+import { Textarea } from "~/components/ui/textarea";
 
-const LeadForm = ({ lead,onClose }: { lead: z.infer<typeof leadSchema> ; onClose: () => void; }) => {
-    
-    const [isLoading, setIsLoading] = React.useState<boolean>(false)
+const LeadForm = ({ lead, onClose }: { lead: z.infer<typeof leadSchema>; onClose: () => void; }) => {
+
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+    const [nextActivityDate, setNextActivityDate] = React.useState<Date>();
+    const [showActivity, setShowActivity] = useState(true);
     // const {
     //     register,
     //     handleSubmit,
@@ -35,17 +38,21 @@ const LeadForm = ({ lead,onClose }: { lead: z.infer<typeof leadSchema> ; onClose
     const queryClient = useQueryClient();
     async function onSubmit(values: z.infer<typeof leadSchema>) {
         setIsLoading(true);
+        if (nextActivityDate) {
+            values.nextActivityDate = nextActivityDate;
+        }
         var res = values?.leadId == 0 ? await leadService.Register(values) : await leadService.update(values);
         if (res.success) {
             toast(res.message)
             onClose();
-            
+
             queryClient.invalidateQueries({ queryKey: ["leads"] });
         }
         setIsLoading(false);
         console.log(values);
     }
-    return (<React.Fragment>
+    return (
+    <React.Fragment>
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                 <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -196,7 +203,17 @@ const LeadForm = ({ lead,onClose }: { lead: z.infer<typeof leadSchema> ; onClose
                                 <FormControl>
                                     <LeadSteps
                                         {...field}
-                                        onValueChange={(val: string) => field.onChange(Number(val))}
+                                        onValueChange={(val: string) => {
+                                            const numberVal = Number(val);
+                                            field.onChange(numberVal);
+
+                                            // yahan check karein jaise step 2 pe div hide karna hai
+                                            if (numberVal === 7) {
+                                                setShowActivity(false);
+                                            } else {
+                                                setShowActivity(true);
+                                            }
+                                        }}
                                         value={field.value?.toString() ?? ''}
                                     />
                                 </FormControl>
@@ -204,8 +221,62 @@ const LeadForm = ({ lead,onClose }: { lead: z.infer<typeof leadSchema> ; onClose
                             </FormItem>
                         )}
                     />
-                    <DateTimePicker />
                 </div>
+                {lead.leadId == 0 && showActivity && (
+                    <React.Fragment>
+                        <DialogHeader>
+                            <DialogTitle>Next Activity</DialogTitle>
+                        </DialogHeader>
+                        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                            <FormField
+                                control={form.control}
+                                name="title"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Activity Title</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Activity Title" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormItem>
+                                <FormLabel>Next Activity Date : </FormLabel>
+                                <FormControl>
+                                    <DateTimePicker date={nextActivityDate} setDate={setNextActivityDate} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                            <FormField
+                                control={form.control}
+                                name="nextActivitySource"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Communication Channel</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Communication Channel" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="remarks"
+                                render={({ field }) => (
+                                    <FormItem className="col-span-4">
+                                        <FormLabel>Description</FormLabel>
+                                        <FormControl>
+                                            <Textarea placeholder="Description" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                    </React.Fragment>)}
+
                 <DialogFooter>
                     <DialogClose asChild>
                         <Button type="button" variant="secondary">
@@ -213,9 +284,9 @@ const LeadForm = ({ lead,onClose }: { lead: z.infer<typeof leadSchema> ; onClose
                         </Button>
                     </DialogClose>
                     <Button type="submit" disabled={isLoading}>
-                                {isLoading ? (
-                                    <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                                ) : ""}{" "} Save changes</Button>
+                        {isLoading ? (
+                            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                        ) : ""}{" "} Save changes</Button>
                 </DialogFooter>
             </form>
         </Form>

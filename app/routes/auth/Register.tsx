@@ -8,7 +8,7 @@ import { registerSchema } from "./data/register-schema";
 import type { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "~/components/ui/input";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Icons } from "~/components/icons";
 import { Eye, EyeOff } from "lucide-react";
 import { userService } from "~/api/userService";

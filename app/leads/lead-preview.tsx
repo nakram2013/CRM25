@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import LeadBasicInfo from "./lead-basic-info";
 import { useParams } from "react-router";
 import { leadService } from "~/api/leadService";
@@ -7,9 +7,13 @@ import type { z } from "zod";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
-import LeadFollowup from "./components/lead-followup";
+import LeadFollowup, { type LeadFollowupHandle } from "./components/lead-followup";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "~/components/ui/dialog";
+import { ScrollArea } from "~/components/ui/scroll-area";
+import FollowUpForm from "./components/followup-form";
 
 const LeadPreview: React.FC = () => {
+    const [openF, setOpenF] = useState(false);
     const { id } = useParams<{ id: string }>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [data, setData] = useState<z.infer<typeof leadSchema>>({} as z.infer<typeof leadSchema>);
@@ -23,6 +27,14 @@ const LeadPreview: React.FC = () => {
         }
         return result;
     };
+    const followupRef = useRef<LeadFollowupHandle>(null);
+
+    const handleManualReload = () => {
+        followupRef.current?.reload();
+    };
+    const handleFollowUp = () => {
+        setOpenF(true);
+    };
     useEffect(() => {
         const fetchDataAsync = async () => {
             if (id !== undefined && id !== "") {
@@ -34,31 +46,24 @@ const LeadPreview: React.FC = () => {
 
         fetchDataAsync();
     }, [id]);
-
     return (
         <div className="flex gap-4">
             <LeadBasicInfo isLoading={isLoading} data={data} />
-            <Tabs defaultValue="account" className="w-full">
+            <Tabs defaultValue="activities" className="w-full">
                 <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="account">All Activities</TabsTrigger>
+                    <TabsTrigger value="activities">All Activities</TabsTrigger>
                     <TabsTrigger value="password">Password</TabsTrigger>
                 </TabsList>
-                <TabsContent value="account">
+                <TabsContent value="activities">
                     <Card>
-                        <CardHeader>
-                            <CardTitle>Account</CardTitle>
-                            <CardDescription>
-                                Make changes to your account here. Click save when you're done.
-                            </CardDescription>
-                        </CardHeader>
                         <CardContent className="space-y-2">
+                            <div>
+                                <Button onClick={() => handleFollowUp()}>Follow Up</Button>
+                            </div>
                             <div className="space-y-1">
-                            <LeadFollowup id={parseInt(id ? id : "0")} />
+                                <LeadFollowup id={parseInt(id ? id : "0")} />
                             </div>
                         </CardContent>
-                        <CardFooter>
-                            <Button>Save changes</Button>
-                        </CardFooter>
                     </Card>
                 </TabsContent>
                 <TabsContent value="password">
@@ -70,7 +75,7 @@ const LeadPreview: React.FC = () => {
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-2">
-                           <LeadFollowup id={parseInt(id ? id : "0")} />
+                            <LeadFollowup id={parseInt(id ? id : "0")} />
                         </CardContent>
                         <CardFooter>
                             <Button>Save password</Button>
@@ -78,6 +83,20 @@ const LeadPreview: React.FC = () => {
                     </Card>
                 </TabsContent>
             </Tabs>
+            <Dialog open={openF} onOpenChange={setOpenF}>
+                <DialogContent className="sm:max-w-[425px] md:max-w-[600px] lg:max-w-[60px] xl:max-w-[600px] 2xl:max-w-[600px]">
+                    <DialogHeader>
+                        <DialogTitle>Add Follow Up</DialogTitle>
+                        <DialogDescription>
+                            Make changes to your lead here. Click save when you're done.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <ScrollArea className="max-h-[70vh] rounded-md pr-3">
+                        <FollowUpForm leadID={data.leadId} onClose={() => setOpenF(false)} callBack={handleManualReload}/>
+                    </ScrollArea>
+                </DialogContent>
+
+            </Dialog>
         </div>
     );
 };

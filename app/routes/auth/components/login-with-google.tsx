@@ -10,8 +10,9 @@ const LoginWithGoogle: React.FC = () => {
 
         if (credentialResponse.credential) {
             try {
-                const res = await apiService.post("/api/account/loginwithgoogle", {
+                const res = await apiService.post("/api/account/LoginwithSocial", {
                     token: credentialResponse.credential as string,
+                    type: "Google"
                 });
                 if (res.token != "") {
                     localStorage.setItem("authToken", res.token);

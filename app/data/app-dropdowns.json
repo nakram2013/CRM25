@@ -34,5 +34,27 @@
             "text": "Banned",
             "value": "3"
         }
+    ],
+    "leadStatus": [
+        {
+            "text": "Overdue",
+            "value": "overdue"
+        },
+        {
+            "text": "Due",
+            "value": "due"
+        },
+        {
+            "text": "Upcoming",
+            "value": "upcoming"
+        },
+        {
+            "text": "Dropped",
+            "value": "dropped"
+        },
+        {
+            "text": "Finalized",
+            "value": "finalized"
+        }
     ]
 }

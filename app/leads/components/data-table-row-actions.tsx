@@ -13,16 +13,18 @@ import { ScrollArea } from "~/components/ui/scroll-area"
 import type { z } from "zod"
 
 interface DataTableRowActionsProps<TData> {
-  row: Row<TData>
+  row: Row<TData>,
+  onActionClick?: (row: TData, type: string) => void;
 }
 
 export function DataTableRowActions<TData>({
   row,
+  onActionClick
 }: DataTableRowActionsProps<TData>) {
   const task = leadSchema.parse(row.original)
   const [open, setOpen] = useState(false);
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
@@ -33,27 +35,8 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem asChild className="w-full">
-          <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger className="w-full text-left px-2 py-1.5 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-accent focus:text-accent-foreground">
-              Edit
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1000px] 2xl:max-w-[1200px]">
-              <DialogHeader>
-                <DialogTitle>Edit lead</DialogTitle>
-
-                <DialogDescription>
-                  Make changes to your lead here. Click save when you're done.
-                </DialogDescription>
-              </DialogHeader>
-              <ScrollArea className="max-h-[70vh] rounded-md">
-                <LeadForm lead={leadSchema.parse(row.original) as z.infer<typeof leadSchema>} onClose={() => setOpen(false)} />
-              </ScrollArea>
-            </DialogContent>
-
-          </Dialog>
-        </DropdownMenuItem>
-        <DropdownMenuItem>Make a copy</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => onActionClick?.(row.original, "edit")}>Edit</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => onActionClick?.(row.original, "followup")}>Follow up</DropdownMenuItem>
         <DropdownMenuItem>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuSub>

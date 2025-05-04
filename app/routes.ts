@@ -4,7 +4,7 @@ import { type RouteConfig, index, route, layout } from "@react-router/dev/routes
 
 
 export default [
-    index("routes/home.tsx"),
+    //index("routes/home.tsx"),
     // route("about", "./about.tsx"),
   
     layout("./routes/auth/layout.tsx", [
@@ -12,6 +12,7 @@ export default [
       route("register", "./routes/auth/register.tsx"),
     ]),
     layout("./routes/layouts/_Layout.tsx", [
+      route("/", "./Dashboard/dashboard.tsx"),
       route("Leads/:id?", "./leads/leads.tsx"),
       route("Lead/:id", "./leads/lead-preview.tsx"),
       route("Users/:id?", "./Users/Users.tsx"),

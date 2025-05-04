@@ -12,6 +12,7 @@ import { Link, useNavigate } from "react-router";
 import { userService } from "~/api/userService";
 import loginImage from '../../assets/images/login.jpg';
 import LoginWithGoogle from './components/login-with-google';
+import LoginWithFacebook from "./components/login-with-facebook";
 
 const validationSchema = yup.object().shape({
     password: yup.string().required("Password is required"),
@@ -35,13 +36,13 @@ const Login: React.FC = () => {
             }
             //console.log(users);
         } catch (error: any) {
+            setIsLoading(false);
             console.error('Error fetching users:', error.message);
         }
     };
     const onSubmit = async (data: ILogin) => {
         setIsLoading(true);
         await login(data);
-        setIsLoading(false);
     };
     return (
         <div className="grid min-h-svh lg:grid-cols-2">
@@ -118,17 +119,8 @@ const Login: React.FC = () => {
                                     </span>
                                 </div>
                             </div>
-                            <Button variant="outline" type="button" disabled={isLoading}>
-                                {isLoading ? (
-                                    <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                                ) : (
-                                    <Icons.gitHub className="mr-2 h-4 w-4" />
-                                )}{" "}
-                                GitHub
-                            </Button>
-                        
-
                             <LoginWithGoogle />
+                            <LoginWithFacebook />
                         </div>
                     </div>
                 </div>
