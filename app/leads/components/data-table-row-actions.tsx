@@ -5,12 +5,8 @@ import { labels } from "../data/data"
 import type { Row } from "@tanstack/react-table"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "~/components/ui/dropdown-menu"
 import { Button } from "~/components/ui/button"
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "~/components/ui/dialog"
-import LeadForm from "./lead-form"
 import { leadSchema } from "../data/schema"
 import { useState } from "react"
-import { ScrollArea } from "~/components/ui/scroll-area"
-import type { z } from "zod"
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>,

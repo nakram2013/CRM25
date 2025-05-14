@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router";
 import { Button } from "~/components/ui/button";
-import loginImage from '../../assets/images/login.jpg';
+import loginImage from '../../assets/images/Full-Logo.png';
 import { cn } from "~/lib/utils";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "~/components/ui/form";
 import { useForm } from "react-hook-form";
@@ -50,7 +50,7 @@ const Register: React.FC = () => {
                     <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
                         {/* <GalleryVerticalEnd className="size-4" /> */}
                     </div>
-                    The SQ
+                    The Smart Qalfa
                 </a>
                 <Button asChild>
                     <Link to="/login">Login</Link>

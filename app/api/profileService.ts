@@ -12,6 +12,16 @@ class ProfileService {
         this.auth = localStorage.getItem("authToken"); // Fix for SSR
       }
     }
+    async Profile(): Promise<z.infer<typeof userSchema>> {
+        // Proper method syntax inside a class
+        return await apiClient('/api/Profile/GetUserProfile', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.auth}`,
+            },
+        });
+    } 
     async Register(userData: z.infer<typeof userSchema>): Promise<any> {
         // Proper method syntax inside a class
         return await apiClient('/api/Profile', {

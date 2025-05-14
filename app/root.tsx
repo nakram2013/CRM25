@@ -8,7 +8,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
-import { FrameworkProvider } from "./context/FrameworkContext";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export const links: Route.LinksFunction = () => [
@@ -27,7 +27,7 @@ const queryClient = new QueryClient();
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
-    <FrameworkProvider>
+    
       <html lang="en">
         <head>
           <meta charSet="utf-8" />
@@ -41,7 +41,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <Scripts />
         </body>
       </html>
-    </FrameworkProvider>
     </QueryClientProvider>
   );
 }

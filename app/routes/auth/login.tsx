@@ -10,7 +10,7 @@ import * as yup from "yup"; // Ensure it's lowercase everywhere
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { userService } from "~/api/userService";
-import loginImage from '../../assets/images/login.jpg';
+import loginImage from '../../assets/images/Full-Logo.png';
 import LoginWithGoogle from './components/login-with-google';
 import LoginWithFacebook from "./components/login-with-facebook";
 
@@ -60,7 +60,7 @@ const Login: React.FC = () => {
                         <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
                             {/* <GalleryVerticalEnd className="size-4" /> */}
                         </div>
-                        The SQ
+                        The Smart Qafla
                     </a>
                     <Button asChild>
                         <Link to="/Register">Create an account</Link>

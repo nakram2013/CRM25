@@ -7,6 +7,7 @@ export const userSchema = z.object({
     firstName: z.string().default(""),
     lastName: z.string().default(""),
     email: z.string().default(""),
+    Image : z.string().default(""),
     gender: z.preprocess((val) => {
       const num = Number(val);
       return isNaN(num) ? undefined : num;
