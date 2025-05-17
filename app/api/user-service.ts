@@ -1,4 +1,4 @@
-import type { ILogin } from "~/types/iLogin";
+import type { ILogin } from "~/types/ilogin";
 import { apiClient } from "./api-client";
 import type { z } from "zod";
 import type { registerSchema } from "~/routes/auth/data/register-schema";

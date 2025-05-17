@@ -23,7 +23,7 @@ import { useQuery } from "@tanstack/react-query"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
 import { Button } from "./ui/button"
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react"
-import type { IDataTableResponse } from "~/types/iDataTableResponse"
+import type { IDataTableResponse } from "~/types/idatatable-response"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]

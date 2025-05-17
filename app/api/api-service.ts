@@ -1,7 +1,7 @@
-import type { IDataTableRequest } from "~/types/iDataTableRequest";
+import type { IDataTableRequest } from "~/types/idatatable-request";
 import { apiClient } from "./api-client";
-import type { IDataTableResponse } from "~/types/iDataTableResponse";
-import type { IDropdown } from "~/types/iDropdown";
+import type { IDataTableResponse } from "~/types/idatatable-response";
+import type { IDropdown } from "~/types/idropdown";
 
 class ApiService {
     private auth: string | null = null;
