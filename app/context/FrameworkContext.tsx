@@ -15,25 +15,27 @@ const FrameworkContext = createContext<FrameworkContextType | null>(null);
 
 // ✅ Create Provider
 export function FrameworkProvider({ children }: { children: React.ReactNode }) {
-      const [state, setState] = useState<{ user: User | null }>({ user: null });
-    useEffect(() => {
-        // Replace with your actual API endpoint
-        const fetchUser = async () => {
-            try {
-                const response = await profileService.Profile();
-                setState({ user: response });
-            } catch (error) {
-                console.error("Failed to fetch user", error);
-            }
-        };
+  const [state, setState] = useState<{ user: User | null }>({ user: null });
+  useEffect(() => {
+    // Replace with your actual API endpoint
+    if (state.user === null) {
+      const fetchUser = async () => {
+        try {
+          const response = await profileService.Profile();
+          setState({ user: response });
+        } catch (error) {
+          console.error("Failed to fetch user", error);
+        }
+      };
 
-        fetchUser();
-    }, []);
-    return (
-        <FrameworkContext.Provider value={{ state, setState }}>
-            {children}
-        </FrameworkContext.Provider>
-    );
+      fetchUser();
+    }
+  }, [state.user]);
+  return (
+    <FrameworkContext.Provider value={{ state, setState }}>
+      {children}
+    </FrameworkContext.Provider>
+  );
 }
 
 // ✅ Create Hook to Access Context

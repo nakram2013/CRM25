@@ -1,4 +1,4 @@
-"use client"
+
 import { MoreHorizontal } from "lucide-react"
 
 import { labels } from "../data/data"

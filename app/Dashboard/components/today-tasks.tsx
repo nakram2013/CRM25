@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DataTable } from "~/components/DataTable";
+import { DataTable } from "~/components/dataTable";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
 import { columns } from "~/leads/components/columns";

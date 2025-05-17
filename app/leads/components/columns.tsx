@@ -1,9 +1,7 @@
-"use client"
 import type { ColumnDef } from "@tanstack/react-table"
 import { type Task } from "../data/schema"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
-import { Checkbox } from "~/components/ui/checkbox"
 import { Link } from "react-router"
 
 export const columns = (onActionClick?: (row: any, type: string) => void): ColumnDef<Task>[] => [

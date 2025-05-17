@@ -1,5 +1,4 @@
-"use client";
- 
+
 import * as React from "react";
 import { format } from "date-fns";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";

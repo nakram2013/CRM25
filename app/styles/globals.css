@@ -1,0 +1,4 @@
+/* styles/globals.css */
+.custom-z-index {
+  z-index: 9999 !important;
+}

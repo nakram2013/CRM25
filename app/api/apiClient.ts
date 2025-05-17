@@ -24,9 +24,12 @@ export const apiClient = async (
       console.log(error);
       Swal.fire({
         title: 'Error!',
-        text:  error.response.data.message || error.response.data ,
+        text: error.response.data.message || error.response.data,
         icon: 'warning',
-        confirmButtonText: 'Ok'
+        confirmButtonText: 'Ok',
+        customClass: {
+          popup: 'custom-z-index'
+        }
       })
       throw new Error(`Failed to fetch: ${error.response.statusText}`);
     } else if (error.request) {

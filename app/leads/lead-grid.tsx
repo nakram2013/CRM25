@@ -1,4 +1,4 @@
-import { DataTable } from "~/components/DataTable";
+import { DataTable } from "~/components/dataTable";
 import { columns } from "./components/columns"
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";

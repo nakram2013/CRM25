@@ -8,6 +8,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import '~/styles/globals.css';
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 

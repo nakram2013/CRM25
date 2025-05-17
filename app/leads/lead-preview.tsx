@@ -50,9 +50,9 @@ const LeadPreview: React.FC = () => {
         <div className="flex gap-4">
             <LeadBasicInfo isLoading={isLoading} data={data} />
             <Tabs defaultValue="activities" className="w-full">
-                <TabsList className="grid w-full grid-cols-2">
+                <TabsList className="grid w-full grid-cols-1">
                     <TabsTrigger value="activities">All Activities</TabsTrigger>
-                    <TabsTrigger value="password">Password</TabsTrigger>
+                    {/* <TabsTrigger value="password">Password</TabsTrigger> */}
                 </TabsList>
                 <TabsContent value="activities">
                     <Card>
