@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import type { z } from "zod";
-import { profileService } from "~/api/profileService";
+import { profileService } from "~/api/profile-service";
 import type { userSchema } from "~/Users/data/user-schema";
 type User = z.infer<typeof userSchema>;
 type FrameworkContextType = {

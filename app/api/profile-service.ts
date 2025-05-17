@@ -1,8 +1,6 @@
-import { apiClient } from "./apiClient";
-import type { IReassignLead } from "~/types/iReassignLead";
-import type { leadSchema } from "~/leads/data/schema";
+import type { userSchema } from "~/users/data/user-schema";
+import { apiClient } from "./api-client";
 import type { z } from "zod";
-import type { userSchema } from "~/Users/data/user-schema";
 
 class ProfileService {
     private auth: string | null = null;

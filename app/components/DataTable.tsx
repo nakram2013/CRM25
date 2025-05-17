@@ -18,7 +18,7 @@ import {
 // import { DataTablePagination } from "./data-table-pagination"
 // import { DataTableToolbar } from "./data-table-toolbar"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table"
-import { apiService } from "~/api/apiService"
+import { apiService } from "~/api/api-service"
 import { useQuery } from "@tanstack/react-query"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
 import { Button } from "./ui/button"

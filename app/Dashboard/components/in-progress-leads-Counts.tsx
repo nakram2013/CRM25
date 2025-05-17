@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { dashboardService } from "~/api/dashboardService";
+import { dashboardService } from "~/api/dashboard-service";
 import { Badge } from "~/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";

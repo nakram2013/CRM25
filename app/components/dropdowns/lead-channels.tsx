@@ -1,4 +1,4 @@
-import { apiService } from "~/api/apiService";
+import { apiService } from "~/api/api-service";
 import type { DropdownListItem } from "./schema";
 import { useEffect, useState } from "react";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";

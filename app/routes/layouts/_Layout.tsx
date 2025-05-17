@@ -3,7 +3,7 @@ import { AppSidebar } from "~/components/app-sidebar";
 import { SidebarProvider } from "~/components/ui/sidebar";
 import Cookies from "js-cookie";
 import { Toaster } from "sonner";
-import { FrameworkProvider } from "~/context/FrameworkContext";
+import { FrameworkProvider } from "~/context/framework-context";
 import { useEffect, useState } from "react";
 import AppTopbar from "~/components/app-topbar";
 

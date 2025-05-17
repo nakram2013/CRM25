@@ -1,5 +1,5 @@
 import type { ILogin } from "~/types/iLogin";
-import { apiClient } from "./apiClient";
+import { apiClient } from "./api-client";
 import type { z } from "zod";
 import type { registerSchema } from "~/routes/auth/data/register-schema";
 

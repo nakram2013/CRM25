@@ -1,5 +1,5 @@
 import type { IDataTableRequest } from "~/types/iDataTableRequest";
-import { apiClient } from "./apiClient";
+import { apiClient } from "./api-client";
 import type { IDataTableResponse } from "~/types/iDataTableResponse";
 import type { IDropdown } from "~/types/iDropdown";
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
-import { apiService } from "~/api/apiService";
+import { apiService } from "~/api/api-service";
 import { Icons } from "~/components/icons";
 import { Button } from "~/components/ui/button";
 

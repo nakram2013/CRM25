@@ -12,7 +12,7 @@ import { toast } from "sonner";
 import { userSchema } from "../data/user-schema";
 import { RadioGroup, RadioGroupItem } from "~/components/ui/radio-group";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "~/components/ui/select";
-import { profileService } from "~/api/profileService";
+import { profileService } from "~/api/profile-service";
 import dropdowns from "~/data/app-dropdowns.json";
 
 const UserForm = ({ data, onClose }: { data: z.infer<typeof userSchema>; onClose: () => void; }) => {

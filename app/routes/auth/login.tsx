@@ -9,7 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup"; // Ensure it's lowercase everywhere
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
-import { userService } from "~/api/userService";
+import { userService } from "~/api/user-service";
 import loginImage from '../../assets/images/Full-Logo.png';
 import LoginWithGoogle from './components/login-with-google';
 import LoginWithFacebook from "./components/login-with-facebook";

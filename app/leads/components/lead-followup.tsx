@@ -1,5 +1,5 @@
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
-import { leadService } from "~/api/leadService";
+import { leadService } from "~/api/lead-service";
 import type { leadFollowUpSchema } from "../data/lead-followup-schema";
 import type { z } from "zod";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";

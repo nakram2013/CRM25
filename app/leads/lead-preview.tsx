@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import LeadBasicInfo from "./lead-basic-info";
 import { useParams } from "react-router";
-import { leadService } from "~/api/leadService";
+import { leadService } from "~/api/lead-service";
 import type { leadSchema } from "./data/schema";
 import type { z } from "zod";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";

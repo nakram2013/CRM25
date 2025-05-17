@@ -1,6 +1,6 @@
 import { GoogleLogin, type CredentialResponse } from '@react-oauth/google';
 import React from 'react';
-import { apiService } from '~/api/apiService';
+import { apiService } from '~/api/api-service';
 import { Link, useNavigate } from "react-router";
 import { toast } from 'sonner';
 

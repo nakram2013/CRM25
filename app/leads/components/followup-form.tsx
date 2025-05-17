@@ -12,7 +12,7 @@ import { Input } from "~/components/ui/input";
 import { DateTimePicker } from "~/components/date-time-picker";
 import { Textarea } from "~/components/ui/textarea";
 import { leadFollowUpFormSchema } from "../data/lead-followup-form-schema";
-import { leadService } from "~/api/leadService";
+import { leadService } from "~/api/lead-service";
 import LeadSteps from "~/components/dropdowns/lead-steps";
 
 const FollowUpForm = ({ leadID, onClose,callBack }: { leadID: number; onClose: () => void;callBack? : () => void; }) => {

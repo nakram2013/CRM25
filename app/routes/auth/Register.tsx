@@ -11,7 +11,7 @@ import { Input } from "~/components/ui/input";
 import { useState } from "react";
 import { Icons } from "~/components/icons";
 import { Eye, EyeOff } from "lucide-react";
-import { userService } from "~/api/userService";
+import { userService } from "~/api/user-service";
 import { toast } from "sonner";
 
 const Register: React.FC = () => {

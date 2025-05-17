@@ -11,7 +11,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import Products from "~/components/dropdowns/products";
 import LeadChannels from "~/components/dropdowns/lead-channels";
 import LeadSteps from "~/components/dropdowns/lead-steps";
-import { leadService } from "~/api/leadService";
+import { leadService } from "~/api/lead-service";
 import { useQueryClient } from "@tanstack/react-query";
 import { Icons } from "~/components/icons";
 import { DateTimePicker } from "~/components/date-time-picker";

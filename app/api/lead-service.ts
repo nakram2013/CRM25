@@ -1,4 +1,4 @@
-import { apiClient } from "./apiClient";
+import { apiClient } from "./api-client";
 import type { IReassignLead } from "~/types/iReassignLead";
 import type { leadSchema } from "~/leads/data/schema";
 import type { z } from "zod";
