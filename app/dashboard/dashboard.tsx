@@ -1,4 +1,3 @@
-import { Skeleton } from "~/components/ui/skeleton";
 import LeadCountsCard from "./components/lead-counts-card";
 import InProgressLeadsCounts from "./components/in-progress-leads-Counts";
 import TodayTasks from "./components/today-tasks";
