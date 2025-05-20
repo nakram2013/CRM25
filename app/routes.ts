@@ -11,11 +11,12 @@ export default [
       route("login", "./routes/auth/login.tsx"),
       route("register", "./routes/auth/register.tsx"),
     ]),
-    layout("./routes/layouts/_Layout.tsx", [
+    layout("./routes/layouts/_layout.tsx", [
       route("/", "./dashboard/dashboard.tsx"),
       route("Leads/:id?", "./leads/leads.tsx"),
       route("Lead/:id", "./leads/lead-preview.tsx"),
-      route("Users/:id?", "./users/Users.tsx"),
+      route("Users/:id?", "./users/users.tsx"),
+      route("Integrations/Facebook", "./integrations/facebook/fb.tsx"),
     //   route("register", "./auth/register.tsx"),
     ]),
   
