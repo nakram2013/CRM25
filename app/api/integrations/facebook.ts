@@ -20,6 +20,16 @@ class FacebookService {
             },
         });
     } 
+        async FBPages(FBID : number): Promise<any> {
+        // Proper method syntax inside a class
+        return await apiClient('/api/Integration/FBPages/' + FBID, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.auth}`,
+            },
+        });
+    } 
 }
 
 export const facebookService = new FacebookService();

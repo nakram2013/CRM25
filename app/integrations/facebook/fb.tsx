@@ -9,6 +9,10 @@ import { Separator } from "~/components/ui/separator";
 import FacebookProfile from "./components/fb-profile";
 import type { z } from "zod";
 import type { profileSchema } from "./data/profile-schema";
+import type { fbpageSchema } from "./data/page-schema";
+import FacebookPage from "./components/fb-page";
+import { Badge } from "~/components/ui/badge";
+import { EmptyState } from "~/components/ui/empty-state";
 
 declare global {
     interface Window {
@@ -20,7 +24,8 @@ declare global {
 const fb = () => {
     const [sdkReady, setSdkReady] = useState(false);
     const navigate = useNavigate();
-    const [fbProfile,setFBProfile] = useState<z.infer<typeof profileSchema>>({} as z.infer<typeof profileSchema>);
+    const [fbProfile, setFBProfile] = useState<z.infer<typeof profileSchema>>({} as z.infer<typeof profileSchema>);
+    const [fbPages, setFBPages] = useState<z.infer<typeof fbpageSchema>[]>([]);
     const [isLoading, setIsLoading] = useState(false);
 
     // Effect hook for loading the Facebook SDK
@@ -76,9 +81,13 @@ const fb = () => {
                         facebookService.Profile(
                             response.authResponse.accessToken as string
                         ).then((res) => {
-                            console.log(res)
                             setFBProfile(res);
-                            setIsLoading(true);
+
+                            facebookService.FBPages(res.facebookID).then((pres) => {
+                                console.log(pres);
+                                setFBPages(pres);
+                                setIsLoading(true);
+                            })
 
                         })
                             .catch(() => {
@@ -97,6 +106,7 @@ const fb = () => {
 
     return (
         <React.Fragment>
+
             <div>
                 {sdkReady ? (
                     <Button variant="outline" type="button" onClick={handleLogin} className="float-end">
@@ -113,10 +123,23 @@ const fb = () => {
             <div className="flex justify-center items-center text-muted-foreground">
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             </div>
+            <Badge variant="outline">Syncing...</Badge>
+            <EmptyState
+                title="No Pages Found"
+                description="This account doesn't have any connected Facebook Pages."
+                actionLabel="Refresh"
+            />
+
             {isLoading && (
-                <FacebookProfile Profile={fbProfile}></FacebookProfile>
+                <FacebookProfile Profile={fbProfile}>
+                    {
+                        fbPages.map((item, index) =>
+                            (<FacebookPage key={index} fbPage={item}></FacebookPage>)
+                        )
+                    }
+                </FacebookProfile>
             )}
-            
+
         </React.Fragment>
     );
 };
